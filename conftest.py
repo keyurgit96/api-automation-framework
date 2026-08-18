@@ -3,5 +3,5 @@ import requests
 
 @pytest.fixture(scope="session")
 def basicurl():
-    basiculrl="https://jsonplaceholder.typicode.com"
+    basiculrl="https://dummyjson.com"
     return basiculrl
