@@ -24,3 +24,18 @@ def test_nopassword(basicurl,http_client):
     response=http_client.post(basicurl+"/auth/login",json={"username":"emilys"})
     assert response.status_code==400
     
+@pytest.mark.correcttoken
+def test_correcttoken(http_client,token_auth,basicurl):
+    response=http_client.get(basicurl+"/auth/me",headers={"Authorization":f"Bearer {token_auth}"})
+    assert response.status_code==200
+    data=response.json()
+    assert "id" in data
+    assert "username" in data
+    assert data["username"]=="emilys"
+
+@pytest.mark.incorrecttoken
+def test_incorrecttoken(http_client,token_auth,basicurl):
+    response=http_client.get(basicurl+"/auth/me",headers={"Authorization":f"Bearer "})
+    assert response.status_code==401
+    data=response.json()
+    assert "Invalid/Expired" in data["message"]
