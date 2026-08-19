@@ -45,3 +45,22 @@ def tests_updatePost(http_client,apiBaseUrl):
     res=response.json()
     assert 'Title' in res['title']
     assert response.status_code==200
+
+@pytest.mark.TestDeletePost
+@pytest.mark.testthis
+def test_deletePost(http_client, apiBaseUrl):
+    response=http_client.delete(f"{apiBaseUrl}/posts/1")
+    res=response.json()
+    assert 'title' not in res
+    assert response.status_code==200
+
+@pytest.mark.test_patch_post
+@pytest.mark.testthis
+def test_patchPost(http_client, apiBaseUrl):
+    payload={
+        "title":"Patched Title"
+    }
+    response=http_client.patch(f"{apiBaseUrl}/posts/1", payload=payload)
+    res=response.json()
+    assert 'Patched' in res['title']
+    assert response.status_code==200
