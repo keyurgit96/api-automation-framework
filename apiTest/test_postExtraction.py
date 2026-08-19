@@ -1,4 +1,3 @@
-import requests
 import pytest
 
 @pytest.mark.getallpost
@@ -60,7 +59,7 @@ def test_patchPost(http_client, apiBaseUrl):
     payload={
         "title":"Patched Title"
     }
-    response=http_client.patch(f"{apiBaseUrl}/posts/1", payload=payload)
+    response=http_client.patch(f"{apiBaseUrl}/posts/1", json=payload)
     res=response.json()
     assert 'Patched' in res['title']
     assert response.status_code==200

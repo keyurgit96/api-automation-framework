@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 @pytest.fixture(scope="session")
 def basicurl():
@@ -8,4 +7,5 @@ def basicurl():
 
 @pytest.fixture(scope="session")
 def apiBaseUrl():
-    return "https://jsonplaceholder.typicode.com"
+    apiBaseUrl= "https://jsonplaceholder.typicode.com"
+    return apiBaseUrl
