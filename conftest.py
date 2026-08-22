@@ -9,3 +9,7 @@ def basicurl():
 def apiBaseUrl():
     apiBaseUrl= "https://jsonplaceholder.typicode.com"
     return apiBaseUrl
+
+@pytest.fixture(scope='session')
+def restApiUrl():
+    return "https://api.restful-api.dev/"
