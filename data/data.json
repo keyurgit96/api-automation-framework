@@ -14,5 +14,10 @@
         "NoPassword": {
             "username": "emilys"
         }
+    },
+    "apiURL": {
+        "DummyJsonURL": "https://dummyjson.com",
+        "JsonPlaceholderURL": "https://jsonplaceholder.typicode.com",
+        "RestfulApiDevURL": "https://api.restful-api.dev/"
     }
 }
