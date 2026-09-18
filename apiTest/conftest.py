@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 import pytest
 import requests
+import pytest
 
 DATA_FILE = Path(__file__).parent.parent / "data/data.json"
 print(DATA_FILE)
