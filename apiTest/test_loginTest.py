@@ -2,26 +2,26 @@ import pytest
 
 @pytest.mark.correctlogin
 @pytest.mark.smoke
-def test_login(basicurl,http_client):
-    response=http_client.post(basicurl+"/auth/login",json={"username":"emilys","password":"emilyspass"})
+def test_login(basicurl,http_client,read_test_data):
+    response=http_client.post(basicurl+"/auth/login",json=read_test_data['CorrectCreds'])
     assert response.status_code==200
     
 
 @pytest.mark.incorrectlogin
-def test_Incorrect_login(basicurl,http_client):
-    response=http_client.post(basicurl+"/auth/login",json={"username":"emilys","password":"Incorrect"})
+def test_Incorrect_login(basicurl,http_client,read_test_data):
+    response=http_client.post(basicurl+"/auth/login",json=read_test_data['IncorrectCreds'])
     assert response.status_code==400
     
 
 @pytest.mark.nousername
-def test_nousername(basicurl,http_client):
-    response=http_client.post(basicurl+"/auth/login",json={"password":"emilyspass"})
+def test_nousername(basicurl,http_client,read_test_data):
+    response=http_client.post(basicurl+"/auth/login",json=read_test_data['NoUserName'])
     assert response.status_code==400
 
 @pytest.mark.nopassword
 @pytest.mark.smoke
-def test_nopassword(basicurl,http_client):
-    response=http_client.post(basicurl+"/auth/login",json={"username":"emilys"})
+def test_nopassword(basicurl,http_client,read_test_data):
+    response=http_client.post(basicurl+"/auth/login",json=read_test_data['NoPassword'])
     assert response.status_code==400
     
 @pytest.mark.correcttoken
