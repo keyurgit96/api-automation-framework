@@ -1,26 +1,28 @@
 class Endpoints:
+    # DummyJSON Auth Endpoints (DummyJsonURL)
+    AUTH_LOGIN = "/auth/login"
+    AUTH_ME = "/auth/me"
 
-    API_V2 = "/web/index.php/api/v2"
+    # JSONPlaceholder Posts Endpoints (JsonPlaceholderURL)
+    POSTS = "/posts"
+    POSTS_ID = "/posts/{id}"
 
-    # Authentication
-    AUTH_LOGIN = "/web/index.php/auth/validate"
+    # Restful API Objects Endpoints (RestfulApiDevURL)
+    OBJECTS = "/objects"
+    OBJECTS_ID = "/objects/{id}"
 
-    # Recruitment
-    RECRUITMENT_CANDIDATES = f"{API_V2}/recruitment/candidates"
-
-    @staticmethod
-    def candidate_by_id(candidate_id: int | str) -> str:
-        return f"{Endpoints.RECRUITMENT_CANDIDATES}/{candidate_id}"
-
-    # Attendance & Timesheet
-    ATTENDANCE_RECORDS = f"{API_V2}/attendance/records"
-    ATTENDANCE_RECORDS_LATEST = f"{API_V2}/attendance/records/latest"
-
-    # Employee / User Information
-    @staticmethod
-    def employee_name(employee_id: int | str) -> str:
-        return f"{Endpoints.API_V2}/admin/employees/{employee_id}/name"
+    # User / Object Aliases (restapi dev objects used as users in tests)
+    USERS = "/objects"
+    USERS_ID = "/objects/{id}"
 
     @staticmethod
-    def employee_personal_details(employee_id: int | str) -> str:
-        return f"{Endpoints.API_V2}/pim/employees/{employee_id}/personal-details"
+    def post_by_id(post_id) -> str:
+        return f"/posts/{post_id}"
+
+    @staticmethod
+    def object_by_id(object_id) -> str:
+        return f"/objects/{object_id}"
+
+    @staticmethod
+    def user_by_id(user_id) -> str:
+        return f"/objects/{user_id}"

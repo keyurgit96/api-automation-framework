@@ -1,4 +1,20 @@
 {
+    "Credentials": {
+        "CorrectCreds": {
+            "username": "emilys",
+            "password": "emilyspass"
+        },
+        "IncorrectCreds": {
+            "username": "Incorrect",
+            "password": "Incorrectpass"
+        },
+        "NoUserName": {
+            "password": "emilyspass"
+        },
+        "NoPassword": {
+            "username": "emilys"
+        }
+    },
     "CredentialsAPI": {
         "CorrectCreds": {
             "username": "emilys",
@@ -19,5 +35,30 @@
         "DummyJsonURL": "https://dummyjson.com",
         "JsonPlaceholderURL": "https://jsonplaceholder.typicode.com",
         "RestfulApiDevURL": "https://api.restful-api.dev/"
+    },
+    "PostPayloads": {
+        "CreatePost": {
+            "title": "Test Post",
+            "body": "Test Body",
+            "userId": 1
+        },
+        "UpdatePost": {
+            "title": "New Title",
+            "body": "New Body",
+            "userId": 1
+        },
+        "PatchPost": {
+            "title": "Patched Title"
+        }
+    },
+    "UserPayloads": {
+        "CreateUser": {
+            "name": "New User",
+            "salary": "12300",
+            "age": "30"
+        },
+        "PatchUser": {
+            "name": "Patched User"
+        }
     }
 }

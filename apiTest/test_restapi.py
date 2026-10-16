@@ -1,36 +1,30 @@
 import pytest
 
+
 @pytest.mark.getuser
-def test_GetAllUser(http_client, restApiUrl):
-    response = http_client.get(f"{restApiUrl}objects")
-    assert response.status_code==200
+def test_GetAllUser(user_client):
+    res = user_client.getAllUsers()
+    res = res.json()
+    assert res.status_code == 200
+    assert isinstance(res, list)
+
 
 @pytest.mark.create_delete_user
-def test_createUser(http_client,restApiUrl):
-    payload={
-        "name": "New User",
-        "salary": "12300",
-        "age": "30"
-    }
-    response=http_client.post(f"{restApiUrl}objects",json=payload)
-    assert response.status_code==200
-    res=response.json()
-    id=res['id']
+def test_createUser(user_client, user_payloads):
+    # Create user/object using payload from data.json
+    res = user_client.createUser(user_payloads['CreateUser'])
+    assert res.status_code == 200
+    res = res.json()
     assert 'id' in res
-    assert res['name']=='New User'
+    assert res['name'] == 'New User'
+    user_id = res['id']
 
-    payload={
-        "name": "Patched User"
-    }
-    
-    response=http_client.patch(f"{restApiUrl}objects/{id}", json=payload)
-    assert response.status_code==200
-    res=response.json()
-    assert 'name' in res
-    assert res['name']=='Patched User'
-    print(res['name'])
-    delresponse=http_client.delete(f"{restApiUrl}objects/{id}")
-    assert delresponse.status_code==200
+    # Patch user/object using payload from data.json
+    patch_res = user_client.patchUser(user_id, user_payloads['PatchUser'])
+    assert patch_res.status_code == 200
+    assert 'name' in patch_res
+    assert patch_res['name'] == 'Patched User'
 
-
-    
+    # Delete user/object
+    del_res = user_client.deleteUser(user_id)
+    assert user_client.response.status_code == 200
